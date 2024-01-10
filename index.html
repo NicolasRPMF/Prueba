@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en línea</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .product img {
+            max-width: 120px; 
+            height: auto; 
+            margin-bottom: 10px; 
+        }
+
+        .cart .product-image {
+            display: none; 
+        }
+    </style>
+</head>
+
+<h1>La Mejor Bebida del Oeste</h1>
+<body>
+
+
+    <div class="container">
+        <div class="product">
+            <h2>BlueLabel</h2>
+            <img src="bluelabel.png" alt="BlueLabel">
+            <p>El más vendido, un elixir.</p>
+            <p>Precio: $20.00</p>
+            <button class="buy-button" onclick="agregarAlCarrito('BlueLabel', 20.00, 'img/blue_label.jpg')">Agregar al carrito</button>
+        </div>
+    
+        <div class="product">
+            <h2>RedLabel</h2>
+            <img src="redlabelsi.png" alt="RedLabelsi">
+            <p>Genial para la joda y el monster.</p>
+            <p>Precio: $30.00</p>
+            <button class="buy-button" onclick="agregarAlCarrito('RedLabel', 30.00, 'img/red_labelsi.jpg')">Agregar al carrito</button>
+        </div>
+    
+        <div id="carrito" class="cart">
+            <h2>Carrito de compras</h2>
+            <ul id="lista-carrito"></ul>
+            <p>Total: $<span id="total">0.00</span></p>
+            <button class="buy-button" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+    
+    <script>
+        let carrito = [];
+        
+        function agregarAlCarrito(producto, precio, imagen) {
+            carrito.push({ producto, precio, imagen });
+            mostrarCarrito();
+        }
+    
+        function quitarDelCarrito(index) {
+            carrito.splice(index, 1);
+            mostrarCarrito();
+        }
+    
+        function mostrarCarrito() {
+            const listaCarrito = document.getElementById('lista-carrito');
+            const totalElement = document.getElementById('total');
+            listaCarrito.innerHTML = '';
+            
+            let total = 0;
+    
+            carrito.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<img src="${item.imagen}" alt="${item.producto}" class="product-image"> ${item.producto} - $${item.precio.toFixed(2)} <button onclick="quitarDelCarrito(${index})">Quitar</button>`;
+                listaCarrito.appendChild(li);
+                total += item.precio;
+            });
+    
+            totalElement.textContent = total.toFixed(2);
+        }
+    
+        function finalizarCompra() {
+        
+            alert("¡Gracias por tu compra! Te agradecemos por elegir nuestros productos.");
+          
+        }
+    </script>
+    
+
+</body>
+</html>
+
