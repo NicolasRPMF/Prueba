@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda en línea</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <style>
         .product img {
             max-width: 120px; 
@@ -17,10 +18,8 @@
         }
     </style>
 </head>
-
 <h1>La Mejor Bebida del Oeste</h1>
 <body>
-
 
     <div class="container">
         <div class="product">
@@ -47,44 +46,11 @@
         </div>
     </div>
     
-    <script>
-        let carrito = [];
-        
-        function agregarAlCarrito(producto, precio, imagen) {
-            carrito.push({ producto, precio, imagen });
-            mostrarCarrito();
-        }
-    
-        function quitarDelCarrito(index) {
-            carrito.splice(index, 1);
-            mostrarCarrito();
-        }
-    
-        function mostrarCarrito() {
-            const listaCarrito = document.getElementById('lista-carrito');
-            const totalElement = document.getElementById('total');
-            listaCarrito.innerHTML = '';
-            
-            let total = 0;
-    
-            carrito.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `<img src="${item.imagen}" alt="${item.producto}" class="product-image"> ${item.producto} - $${item.precio.toFixed(2)} <button onclick="quitarDelCarrito(${index})">Quitar</button>`;
-                listaCarrito.appendChild(li);
-                total += item.precio;
-            });
-    
-            totalElement.textContent = total.toFixed(2);
-        }
-    
-        function finalizarCompra() {
-        
-            alert("¡Gracias por tu compra! Te agradecemos por elegir nuestros productos.");
-          
-        }
-    </script>
-    
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- JavaScript externo -->
+    <script src="./js/script.js"></script>
 
 </body>
 </html>
-
